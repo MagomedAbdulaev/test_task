@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <a href="{% url 'test_task_app:logout' %}" class="logout">
+            <img src="{% static 'images/exit-icon.png' %}" alt="Выйти" width="50" height="50">
+        </a>
+        {% if clients %}
+            <div class="table-clients">
+            <header class="client">
+                <p class="client__account_number">Номер счета</p>
+                <p class="client__surname">Фамилия</p>
+                <p class="client__name">Имя</p>
+                <p class="client__patronymic">Отчество</p>
+                <p class="client__date_birth">Дата рождения</p>
+                <p class="client__inn">ИНН</p>
+                <p class="client__status">Статус клиента</p>
+            </header>
+            {% for client in clients %}
+                <section class="client {% if forloop.counter|divisibleby:2 %}client_even{% else %}client_odd{% endif %}">
+                    <p class="client__item client__account_number">{{ client.account_number }}</p>
+                    <p class="client__item client__surname">{{ client.surname }}</p>
+                    <p class="client__item client__name">{{ client.name }}</p>
+                    <p class="client__item client__patronymic">{{ client.patronymic }}</p>
+                    <p class="client__item client__date_birth">{{ client.date_birth }}</p>
+                    <p class="client__item client__inn">{{ client.inn }}</p>
+                    <div class="client__item client__status">
+                        <p class="status_value">{{ client.get_status_display }}</p>
+                        <button type="button" class="edit--button">
+                            <img src="{% static 'images/edit-icon.png' %}" alt="Редактировать" class="edit--icon" width="24" height="24">
+                        </button>
+                        <ul class="menu__statuses">
+                            <li class="menu__item" data-set-id="{{ client.id }}" data-set-type="at_work">В работе</li>
+                            <li class="menu__item" data-set-id="{{ client.id }}" data-set-type="deal_closed">Сделка закрыта</li>
+                            <li class="menu__item" data-set-id="{{ client.id }}" data-set-type="reject">Отказ</li>
+                        </ul>
+                    </div>
+                </section>
+            {% endfor %}
+        </div>
+        {% else %}
+            <h1 class="not_found_clients">Клиентов у {{ request.user.username }} не найдено</h1>
+        {% endif %}
+    </div>
+{% endblock %}

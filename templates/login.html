@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="wrapper_login">
+        <form method="post" action="{% url 'test_task_app:login_user' %}" class="form__login">
+            <h1 class="login--title">Авторизация</h1>
+            {% csrf_token %}
+            {{ login_form.username.errors }}
+            {{ login_form.username }}
+            {{ login_form.password.errors }}
+            {{ login_form.password }}
+            <button class="login--submit" type="submit">Авторизоваться</button>
+        </form>
+    </div>
+{% endblock %}

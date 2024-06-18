@@ -1,0 +1,76 @@
+.container {
+    background-color: var(--white-color);
+    height: 100%;
+    width: 100%;
+    flex-grow: 1;
+}
+
+.table-clients .client{
+    color: var(--black-color);
+    display: grid;
+    grid-template-columns: repeat(7, 190px);
+    justify-content: space-between;
+    gap: 30px;
+    padding: 50px 30px;
+}
+
+.table-clients .client .status_value{
+    width: 190px;
+}
+
+.table-clients .client .edit--button{
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+}
+
+.table-clients .client .client__status{
+    position: relative;
+    display: flex;
+    align-items: start;
+    gap: 30px;
+}
+
+.table-clients .client .edit--button{
+    position: relative;
+    top: -8px;
+}
+
+.table-clients .client .menu__statuses{
+    display: none;
+    color: var(--white-color);
+    position: absolute;
+    z-index: 10;
+    background-color: var(--black-color);
+    width: 120px;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+.table-clients .client .menu--active{
+    display: block;
+}
+
+.table-clients .client .menu__statuses .menu__item{
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+.logout{
+    display: inline-block;
+    margin: 30px;
+}
+
+.table-clients .client_odd{
+    color: var(--white-color);
+    background-color: var(--black-color);
+}
+
+.table-clients .client_odd .menu__statuses{
+    color: var(--black-color);
+    background-color: var(--white-color);
+}
+
+.not_found_clients{
+    margin: 30px;
+}
